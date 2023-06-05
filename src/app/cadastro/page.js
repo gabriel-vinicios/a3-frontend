@@ -6,11 +6,6 @@ async function setData(props) {
     try {
         const res = await fetch('http://localhost:3000/pessoa', {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                'Access-Control-Allow-Origin': "*",
-                "Access-Control-Allow-Headers": true
-            },
             mode: "cors", // no-cors, *cors, same-origin
             body: {
                 "nome": props?.nome,
