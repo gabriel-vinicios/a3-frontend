@@ -1,5 +1,9 @@
+'use client';
+
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,9 +13,43 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const [color, setColor] = useState('transparent');
+
+  useEffect(() => {
+    const changeColor = () => {
+      if (window.scrollY >= 90) {
+        setColor('#ffffff');
+      } else {
+        setColor('transparent');
+      }
+    };
+    window.addEventListener('scroll', changeColor);
+  }, []);
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <div
+          style={{ backgroundColor: `${color}` }}
+          className='fixed left-0 top-0 w-full z-10 ease-in duration-300'
+        >
+          <div className='max-w-[1240px] m-auto flex justify-between items-center p-4'>
+            <Link href='/'>
+              <h1 className='font-bold text-4xl'>
+                Surfstar
+              </h1>
+            </Link>
+            <ul className='hidden sm:flex'>
+              <li className='p-4'>
+                <Link href='/'>Alunos</Link>
+              </li>
+              <li className='p-4'>
+                <Link href='/cadastro'>Cadastro</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {children}
+      </body>
     </html>
   )
 }
