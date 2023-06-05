@@ -1,7 +1,10 @@
 async function getData() {
 
   try {
-    const res = await fetch('http://localhost:3000/pessoas').then(data => data.json());
+    const res = await fetch('http://localhost:3000/pessoas',{
+      cache:"no-cache"
+    }
+    ).then(data => data.json());
     
     return res;
   } catch (err) {

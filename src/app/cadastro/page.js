@@ -4,14 +4,17 @@ import React from "react";
 
 async function setData(props) {
     try {
+        console.log(props)
         const res = await fetch('http://localhost:3000/pessoa', {
-            method: "POST",
-            mode: "cors", // no-cors, *cors, same-origin
-            body: {
+            method: "POST", // no-cors, *cors, same-origin
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
                 "nome": props?.nome,
                 "idade": props?.idade,
                 "horario": props?.horario
-            },
+            }),
         })
 
         return res;
