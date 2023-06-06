@@ -55,6 +55,7 @@ export default function Page() {
                                             Nome
                                         </label>
                                         <input
+                                        value={fields.nome}
                                             onChange={(e) => setFields({ ...fields, nome: e.target.value })}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" />
                                     </div>
@@ -65,6 +66,7 @@ export default function Page() {
                                         <input
                                             min="1"
                                             step="1"
+                                            value={fields.idade}
                                             onChange={(e) => { setFields({ ...fields, idade: e.target.value }) }}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="" />
                                     </div>
@@ -73,6 +75,7 @@ export default function Page() {
                                             Horário
                                         </label>
                                         <input
+                                            value={fields.horario}
                                             onChange={(e) => setFields({ ...fields, horario: e.target.value })}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="time" placeholder="" />
                                     </div>
@@ -83,6 +86,7 @@ export default function Page() {
                                         <input
                                             min="1"
                                             step="1"
+                                            value={fields.experiencia}
                                             onChange={(e) => { setFields({ ...fields, experiencia: e.target.value }) }}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="" />
                                     </div>
@@ -91,6 +95,7 @@ export default function Page() {
                                             Nacionalidade
                                         </label>
                                         <input
+                                            value={fields.nacionalidade}
                                             onChange={(e) => setFields({ ...fields, nacionalidade: e.target.value })}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" />
                                     </div>
@@ -101,6 +106,7 @@ export default function Page() {
                                         <input
                                             min="1"
                                             step="any"
+                                            value={fields.peso}
                                             onChange={(e) => { setFields({ ...fields, peso: e.target.value }) }}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="" />
                                     </div>
@@ -111,6 +117,7 @@ export default function Page() {
                                         <input
                                             min="1"
                                             step="any"
+                                            value={fields.altura}
                                             onChange={(e) => { setFields({ ...fields, altura: e.target.value }) }}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="" />
                                     </div>
@@ -122,6 +129,7 @@ export default function Page() {
                                         <input
                                             min="1"
                                             step="any"
+                                            value={fields.tamanhomarmax}
                                             onChange={(e) => { setFields({ ...fields, tamanhomarmax: e.target.value }) }}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="" />
                                     </div>
