@@ -4,7 +4,6 @@ import React from "react";
 
 async function setData(props) {
     try {
-        console.log(props)
         const res = await fetch('http://localhost:3000/pessoa', {
             method: "POST",
             headers: {
@@ -13,7 +12,14 @@ async function setData(props) {
             body: JSON.stringify({
                 "nome": props?.nome,
                 "idade": props?.idade,
-                "horario": props?.horario
+                "horario": props?.horario,
+                "peso": `${props?.peso}Kg`,
+                "altura": `${props?.altura}m`,
+                "tamanhomarmax": `${props?.altura}m`,
+                "nacionalidade": props?.nacionalidade,
+                "experiencia": props?.experiencia,
+                "genero": props?.genero,
+                "local": props?.local
             }),
         })
 
@@ -25,21 +31,34 @@ async function setData(props) {
 }
 
 export default function Page() {
-    const [fields, setFields] = React.useState({ 
-        nome: "", 
-        idade: 0, 
-        horario: "", 
-        peso: 0, 
-        altura: 0, 
-        tamanhomarmax: 0, 
+    const [fields, setFields] = React.useState({
+        nome: "",
+        idade: 0,
+        horario: "",
+        peso: 0,
+        altura: 0,
+        tamanhomarmax: 0,
         nacionalidade: "",
-        experiencia: 0
+        experiencia: 0,
+        genero: "",
+        local: ""
     });
 
     const preventDefault = async (event, fields) => {
         event.preventDefault()
         await setData(fields)
-
+        setFields({
+            nome: "",
+            idade: 0,
+            horario: "",
+            peso: 0,
+            altura: 0,
+            tamanhomarmax: 0,
+            nacionalidade: "",
+            experiencia: 0,
+            genero: "",
+            local: ""
+        })
     }
 
     return (
@@ -55,7 +74,8 @@ export default function Page() {
                                             Nome
                                         </label>
                                         <input
-                                        value={fields.nome}
+                                            required
+                                            value={fields.nome}
                                             onChange={(e) => setFields({ ...fields, nome: e.target.value })}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" />
                                     </div>
@@ -66,15 +86,29 @@ export default function Page() {
                                         <input
                                             min="1"
                                             step="1"
+                                            required
                                             value={fields.idade}
                                             onChange={(e) => { setFields({ ...fields, idade: e.target.value }) }}
-                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="" />
+                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" type="number" placeholder="" />
+                                    </div>
+                                    <div className="mb-6">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                                            Gênero
+                                        </label>
+                                        <select
+                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                        value={fields.genero} onChange={(e) => setFields({ ...fields, genero: e.target.value })}>
+                                            <option value="Homem">Homem</option>
+                                            <option value="Mulher">Mulher</option>
+                                            <option value="Outro">Outro</option>
+                                        </select>
                                     </div>
                                     <div className="mb-6">
                                         <label className="block text-gray-700 text-sm font-bold mb-2">
                                             Horário
                                         </label>
                                         <input
+                                            required
                                             value={fields.horario}
                                             onChange={(e) => setFields({ ...fields, horario: e.target.value })}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="time" placeholder="" />
@@ -84,6 +118,7 @@ export default function Page() {
                                             Anos de Experiência
                                         </label>
                                         <input
+                                            required
                                             min="1"
                                             step="1"
                                             value={fields.experiencia}
@@ -95,8 +130,19 @@ export default function Page() {
                                             Nacionalidade
                                         </label>
                                         <input
+                                            required
                                             value={fields.nacionalidade}
                                             onChange={(e) => setFields({ ...fields, nacionalidade: e.target.value })}
+                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" />
+                                    </div>
+                                    <div className="mb-6">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                                            Local
+                                        </label>
+                                        <input
+                                            required
+                                            value={fields.local}
+                                            onChange={(e) => setFields({ ...fields, local: e.target.value })}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" />
                                     </div>
                                     <div className="mb-6">
@@ -105,6 +151,7 @@ export default function Page() {
                                         </label>
                                         <input
                                             min="1"
+                                            required
                                             step="any"
                                             value={fields.peso}
                                             onChange={(e) => { setFields({ ...fields, peso: e.target.value }) }}
@@ -115,7 +162,7 @@ export default function Page() {
                                             Altura (em metros)
                                         </label>
                                         <input
-                                            min="1"
+                                            required
                                             step="any"
                                             value={fields.altura}
                                             onChange={(e) => { setFields({ ...fields, altura: e.target.value }) }}
@@ -123,11 +170,11 @@ export default function Page() {
                                     </div>
                                     <div className="mb-6">
                                         <label className="block text-gray-700 text-sm font-bold mb-2">
-                                            Tamanho Máximo do Mar<br/>
+                                            Tamanho Máximo do Mar<br />
                                             (em metros)
                                         </label>
                                         <input
-                                            min="1"
+                                            required
                                             step="any"
                                             value={fields.tamanhomarmax}
                                             onChange={(e) => { setFields({ ...fields, tamanhomarmax: e.target.value }) }}
